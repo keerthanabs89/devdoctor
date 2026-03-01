@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+{% if error %}
+<div class="error">{{ error }}</div>
+{% else %}
+
+<h1>Portfolio Intelligence</h1>
+<h2>Average Health: {{ avg_health }}</h2>
+
+<div class="chart-box">
+<canvas id="riskChart"></canvas>
+</div>
+
+<script>
+new Chart(document.getElementById('riskChart'), {
+type:'doughnut',
+data:{
+labels:['Critical','Moderate','Low'],
+datasets:[{
+data:[{{ risk_counts["Critical"] }},
+      {{ risk_counts["Moderate"] }},
+      {{ risk_counts["Low"] }}],
+backgroundColor:['#ef4444','#f59e0b','#22c55e']
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false
+}
+});
+</script>
+
+<table class="repo-table">
+<tr>
+<th>Repository</th>
+<th>Stars</th>
+<th>Health</th>
+<th>Risk</th>
+</tr>
+
+{% for repo in results %}
+<tr>
+<td>{{ repo.name }}</td>
+<td>{{ repo.stars }}</td>
+<td>{{ repo.health }}</td>
+<td>{{ repo.risk }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>

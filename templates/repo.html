@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevDoctor - Repository Analysis</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<div class="container">
+
+{% if error %}
+    <div class="error">{{ error }}</div>
+{% else %}
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>{{ meta.full_name }}</h1>
+        <p>{{ meta.description }}</p>
+
+        <div class="meta">
+            ⭐ {{ meta.stargazers_count }} 
+            &nbsp;&nbsp; | &nbsp;&nbsp;
+            🕒 Updated: {{ meta.updated_at[:10] }}
+        </div>
+    </div>
+
+    <!-- PRIMARY METRICS -->
+    <div class="grid">
+
+        <div class="card">
+            <h3>Health Score</h3>
+            <p class="big">{{ health }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Risk Level</h3>
+            <p class="big">{{ risk }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Governance Score</h3>
+            <p class="big">{{ governance }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Bus Factor</h3>
+            <p class="big">{{ bus }}</p>
+        </div>
+
+    </div>
+
+    <!-- SECONDARY METRICS -->
+    <div class="grid">
+
+        <div class="card">
+            <h3>Merge Efficiency</h3>
+            <p class="big">{{ efficiency }}</p>
+        </div>
+
+        <div class="card">
+            <h3>PR Complexity</h3>
+            <p class="big">{{ complexity }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Burnout Risk</h3>
+            <p class="big">{{ burnout }}</p>
+        </div>
+
+    </div>
+
+    <!-- RECOMMENDATION -->
+    <div class="recommend" style="border-left:5px solid #22c55e;">
+        <h2>Recommendation</h2>
+        <p>{{ recommendation }}</p>
+    </div>
+
+    <!-- CONTRIBUTION OPPORTUNITY -->
+    <div class="recommend" style="border-left:5px solid #38bdf8;">
+        <h2>Contribution Opportunity</h2>
+        <p>{{ opportunity }}</p>
+    </div>
+
+    <!-- AI INSIGHT SUMMARY -->
+    <div class="recommend" style="border-left:5px solid #f59e0b;">
+        <h2>AI Insight Summary</h2>
+        <p>{{ insight }}</p>
+    </div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
